@@ -18,11 +18,30 @@ code {
 h1{
   font-size: 30px;
   font-weight: bold;
-  color: rgb(29, 181, 181);
+  color: teal;
+}
+p{
+  margin: 5px !important;
+  text-align: left;
+  padding: 0px;
+}
+.btn1{
+  box-shadow: none;
+  background-color: white;
+  color: teal;
+  border: 1px solid teal;
+  padding: 5px;
+  border-radius: 5px;
 }
 .header{
   padding: 10px;
 }
 .content{
   min-height: 90vh;  
+}
+.carimg{
+  height: 165px;
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
 }
