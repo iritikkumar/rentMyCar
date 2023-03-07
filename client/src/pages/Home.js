@@ -3,9 +3,12 @@ import DefaultLayout from '../components/DefaultLayout'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllCars } from '../redux/actions/carsActions'
 import { Button, Space, Row, Col} from 'antd';
+import Spinner from '../components/Spinner';
+
 
 const Home = () => {
-  const { cars, loading } = useSelector(state => state.carsReducer);
+  const { cars } = useSelector(state => state.carsReducer);
+  const { loading } = useSelector(state => state.alertsReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,6 +18,7 @@ const Home = () => {
 
   return (
     <DefaultLayout>
+      { loading == true && (<Spinner/>)}
     {/* <div>length of cars array is  {cars.length}</div> */}
       <Row justify="center" gutter={16} className="mt-5">
 
@@ -23,7 +27,7 @@ const Home = () => {
             <div className='car p-2 bs1 mt-3'>
               <img src={car.image} alt='a car' className='carimg'/>
 
-              <div className='car-content d-flex align-items-center'>
+              <div className='car-content d-flex align-items-center justify-content-between'>
                 <div>
                   <p>{car.name}</p>
                   <p>{car.rentPerHour} Rent Per Hour /-</p>
