@@ -1,12 +1,17 @@
 import React from 'react'
 import { Row, Col, Form, Input } from 'antd'
 import { Link } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { userLogin } from '../redux/actions/userActions'
-
+import AOS from 'aos';
+import Spinner from '../components/Spinner'
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 const Login = () => {
 
   const dispatch = useDispatch()
+  const {loading} = useSelector(state => state.alertsReducer)
   function onFinish(values){
     dispatch(userLogin(values))
     console.log(values)
@@ -14,11 +19,15 @@ const Login = () => {
 
   return (
     <div className='login'>
+      {loading && (<Spinner/>)}
       <Row gutter={16}>
 
         <Col lg={16} style={{position: "relative"}}>
 
-          <img src="https://images.wallpaperscraft.com/image/single/lights_car_dark_128635_1366x768.jpg" height="100%" width="100%"/>
+          <img 
+          data-aos='slide-right'
+          data-aos-duration='1500'
+          src="https://images.wallpaperscraft.com/image/single/lights_car_dark_128635_1366x768.jpg" height="100%" width="100%"/>
         </Col>
         <Col lg={8} className='text-left p-5'>
           <Form layout='vertical' className='login-form p-5' onFinish={onFinish}>

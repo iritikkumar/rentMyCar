@@ -38,6 +38,17 @@ p{
 .header{
   padding: 10px;
 }
+
+.header .ant-btn{
+  box-shadow: none;
+  background-color: white;
+  color: teal;
+  border: 1px solid teal;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  outline:none; 
+}
 .content{
   min-height: 90vh;  
 }
