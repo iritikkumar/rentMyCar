@@ -3,8 +3,8 @@ import DefaultLayout from '../components/DefaultLayout'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllCars } from '../redux/actions/carsActions'
 import { Button, Space, Row, Col} from 'antd';
+import {Link} from 'react-router-dom' 
 import Spinner from '../components/Spinner';
-
 
 const Home = () => {
   const { cars } = useSelector(state => state.carsReducer);
@@ -33,10 +33,9 @@ const Home = () => {
                   <p>{car.rentPerHour} Rent Per Hour /-</p>
                 </div>
                 <div>
-                  <button className='btn1'>Book Now</button>
+                  <button className='btn1'><Link to={`/booking/${car._id}`}>BOOK NOW</Link></button>
                 </div>
               </div>
-
             </div>
           </Col>
         })}

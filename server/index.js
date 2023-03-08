@@ -16,6 +16,8 @@ mongoose.connect(process.env.MONGO_URL, {
         console.log(err);
 }); 
 
+
+app.use(express.json())
 app.use(express.json());
 app.use("/api/users/", usersRoute);
 app.use("/api/cars/", carsRoute);
