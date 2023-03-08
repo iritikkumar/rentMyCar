@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <DefaultLayout>
-      { loading == true && (<Spinner/>)}
+      { loading === true && (<Spinner/>)}
     {/* <div>length of cars array is  {cars.length}</div> */}
       <Row justify="center" gutter={16} className="mt-5">
 
