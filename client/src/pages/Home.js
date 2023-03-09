@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import DefaultLayout from '../components/DefaultLayout'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllCars } from '../redux/actions/carsActions'
-import { Button, Space, Row, Col} from 'antd';
-import {Link} from 'react-router-dom' 
+import { Row, Col} from 'antd';
+import { Link } from 'react-router-dom' 
 import Spinner from '../components/Spinner';
 
 const Home = () => {
