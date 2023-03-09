@@ -91,3 +91,7 @@ p{
   border-radius: 10px;
   width: auto;
 }
+
+.text-right{
+  text-align: right;
+}
