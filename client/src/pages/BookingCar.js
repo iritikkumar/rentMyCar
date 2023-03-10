@@ -16,7 +16,7 @@ const BookingCar = (match) =>{
   const dispatch = useDispatch();
   const [from, setFrom] = useState()
   const [to , setTo] = useState();
-  const [totalHpurs, setTotalHours] = useState(0);
+  const [totalHours, setTotalHours] = useState(0);
   const [driver, setDriver] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
   const { carid } = useParams();
@@ -32,17 +32,15 @@ const BookingCar = (match) =>{
     
   useEffect(() =>{
 
-    setTotalAmount((totalHpurs* car.rentPerHour) )
+    setTotalAmount((totalHours* car.rentPerHour) )
 
     if(driver)
     {
-      setTotalAmount(totalAmount + (30*totalHpurs))
+      setTotalAmount(totalAmount + (30*totalHours))
     }
-  }, [driver, totalHpurs])
+  }, [driver, totalHours])
   function selectTimeSlots(values)
   {
-    // console.log(moment(values[0]).format('MMM DD YYYY HH:mm'));
-    // console.log(moment(values[1]).format('MMM DD YYYY HH:mm'));
     setFrom(values[0].format("MMM DD YYYY HH:mm"));
     setTo(values[1].format("MMM DD YYYY HH:mm"));
 
@@ -55,7 +53,7 @@ const BookingCar = (match) =>{
 
       user : JSON.parse(localStorage.getItem('user'))._id,
       car : carid,
-      totalHpurs,
+      totalHours,
       totalAmount,
       driverRequired: driver,
       bookedTimeSlots: {
@@ -64,6 +62,7 @@ const BookingCar = (match) =>{
       }
     }
 
+    console.log("Chlo ye b thk h");
     dispatch(bookCar(reqObj))
   }
 
@@ -88,7 +87,7 @@ const BookingCar = (match) =>{
           <RangePicker showTime={{format: 'HH:mm'}} format ='MMM DD YYYY HH:mm' onChange={selectTimeSlots}/>
 
           <div>
-              <p>Total Hours: <b>{totalHpurs}</b></p>
+              <p>Total Hours: <b>{totalHours}</b></p>
               <p>Rent per Hour: <b>{car.rentPerHour}</b></p>
               <p>Driver charges: <b>30</b></p>
               <Checkbox onChange={(e)=>{
