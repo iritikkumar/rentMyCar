@@ -41,10 +41,12 @@ const DefaultLayout = (props) => {
           <Row gutter ={16} justify='center'>
             <Col lg={20} sm={24} xs={24}>
               <div className='d-flex justify-content-between'>
-                  <h1>RentCars24x7</h1>
-                  <Dropdown overlay={menu} placement="bottomCenter">
-                      <Button>{user.username}</Button>
-                  </Dropdown>
+                <a href='/' style={{"text-decoration":"none"}}>
+                  <h1>rentMyCar</h1>
+                </a>
+                <Dropdown overlay={menu} placement="bottomCenter">
+                    <Button>{user.username}</Button>
+                </Dropdown>
               </div>            
             </Col>
           </Row>
