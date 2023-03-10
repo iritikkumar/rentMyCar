@@ -41,8 +41,6 @@ const BookingCar = (match) =>{
   }, [driver, totalHours])
   function selectTimeSlots(values)
   {
-    // console.log(moment(values[0]).format('MMM DD YYYY HH:mm'));
-    // console.log(moment(values[1]).format('MMM DD YYYY HH:mm'));
     setFrom(values[0].format("MMM DD YYYY HH:mm"));
     setTo(values[1].format("MMM DD YYYY HH:mm"));
 
@@ -64,6 +62,7 @@ const BookingCar = (match) =>{
       }
     }
 
+    console.log("Chlo ye b thk h");
     dispatch(bookCar(reqObj))
   }
 
