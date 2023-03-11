@@ -8,7 +8,6 @@ export const getAllCars = () => async dispatch => {
         dispatch({type: 'LOADING', payload: false});
         
     } catch (err) {
-        console.log("fuckoff");
         console.log(err);
         dispatch({type: 'LOADING', payload: false});
         

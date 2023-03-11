@@ -12,7 +12,7 @@ export const userLogin=(reqObj)=>async dispatch=>{
             window.location.href='/'
         }, 500);
     } catch (err) {
-        message.error("fuckoff your credentials");
+        message.error("Invalid credentials");
         console.log(err);
         dispatch({type: 'LOADING', payload: false});
         

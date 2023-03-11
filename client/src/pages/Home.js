@@ -95,9 +95,8 @@ const Home = () => {
                     <p>{car.rentPerHour} Rent Per Hour /-</p>
                   </div>
                   <div>
-                    <button className="btn1">
-                      <Link to={`/booking/${car._id}`}>BOOK NOW</Link>
-                    </button>
+                      <Link to={`/booking/${car._id}`} style={{textDecoration:'none'}}><button className="btn1">BOOK NOW</button>
+                      </Link>
                   </div>
                 </div>
               </div>

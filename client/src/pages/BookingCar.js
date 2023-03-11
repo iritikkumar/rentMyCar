@@ -1,12 +1,14 @@
-import React ,{ useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import DefaultLayout from '../components/DefaultLayout'
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllCars } from '../redux/actions/carsActions'
-import Spinner from '../components/Spinner'
-import { Row, Col, Divider, DatePicker, Checkbox } from 'antd';
-import moment from 'moment';
-import { bookCar } from '../redux/actions/bookingActions'
+import React ,{ useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import DefaultLayout from '../components/DefaultLayout';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllCars } from '../redux/actions/carsActions';
+import Spinner from '../components/Spinner';
+import { Row, Col, Divider, DatePicker, Checkbox, Modal } from 'antd';
+import moment, { relativeTimeRounding } from 'moment';
+import { bookCar } from '../redux/actions/bookingActions';
+import StripeCheckout from "react-stripe-checkout";
+
 const {RangePicker} = DatePicker;
 
 const BookingCar = (match) =>{
@@ -19,6 +21,7 @@ const BookingCar = (match) =>{
   const [totalHours, setTotalHours] = useState(0);
   const [driver, setDriver] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const { carid } = useParams();
   
   useEffect(() => {
@@ -38,7 +41,8 @@ const BookingCar = (match) =>{
     {
       setTotalAmount(totalAmount + (30*totalHours))
     }
-  }, [driver, totalHours])
+  }, [driver, totalHours]);
+
   function selectTimeSlots(values)
   {
     setFrom(values[0].format("MMM DD YYYY HH:mm"));
@@ -47,10 +51,9 @@ const BookingCar = (match) =>{
     setTotalHours(values[1].diff(values[0], 'hours'))
   }
 
-  function bookNow()
-  {
+  function onToken(token){
     const reqObj={
-
+      token,
       user : JSON.parse(localStorage.getItem('user'))._id,
       car : carid,
       totalHours,
@@ -62,8 +65,8 @@ const BookingCar = (match) =>{
       }
     }
 
-    console.log("Chlo ye b thk h");
-    dispatch(bookCar(reqObj))
+    console.log(reqObj);
+    dispatch(bookCar(reqObj));
   }
 
   return (
@@ -85,8 +88,10 @@ const BookingCar = (match) =>{
 
           <Divider type='horizontal' dashed><h4><b>Select Time Slots</b></h4></Divider>
           <RangePicker showTime={{format: 'HH:mm'}} format ='MMM DD YYYY HH:mm' onChange={selectTimeSlots}/>
-          {from && to && (
-          <div>
+          <br/>
+          <button className='btn1 mt-3' onClick={()=>{setShowModal(true)}}>Show Booked Slots</button>
+          
+          {from && to && (<div>
               <p>Total Hours: <b>{totalHours}</b></p>
               <p>Rent per Hour: <b>{car.rentPerHour}</b></p>
               <p>Driver charges per Hour: <b>30</b></p>
@@ -102,12 +107,28 @@ const BookingCar = (match) =>{
               }}>Driver required</Checkbox>
 
               <h3>Total Amount : {totalAmount}</h3>
-
-              <button classsname="btn1" onClick={bookNow}>Book Now</button>
+              <StripeCheckout
+                shippingAddress
+                token={onToken}
+                amount={totalAmount * 100}
+                currency="INR"
+                stripeKey="pk_test_51MQ3exSJMJym7GDQT41xwtNjAAuum2QEoaJJymREPGZncpr2tzJq6Fesf72zr8uOwg1S2Cvmi5XKCM5Xo7trODP400tuJlPdQU">
+                <button className="btn1" style={{fontWeight:"bold"}}>Book Now</button>
+               </StripeCheckout> 
           </div>)}
           
         </Col>
 
+      {car.name && <Modal open={showModal} closable={false} footer={false} title='Booked Time Slots'>
+              <div className='p-2'>
+                {car.bookedTimeSlots.map(slot=>{
+                  return <p className='mt-3'><b>{slot.from} - {slot.to}</b></p>
+                })}
+                <div className='text-right mt-3'>
+                  <button className='btn1' onClick={()=>{setShowModal(false)}}>Close</button>
+                </div>
+              </div>
+      </Modal>}
       </Row>
 
     </DefaultLayout>
