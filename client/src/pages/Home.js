@@ -1,48 +1,112 @@
-import React, { useState, useEffect } from 'react'
-import DefaultLayout from '../components/DefaultLayout'
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllCars } from '../redux/actions/carsActions'
-import { Row, Col} from 'antd';
-import { Link } from 'react-router-dom' 
-import Spinner from '../components/Spinner';
+import React, { useState, useEffect } from "react";
+import DefaultLayout from "../components/DefaultLayout";
+import moment from "moment";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCars } from "../redux/actions/carsActions";
+import { Row, Col, DatePicker } from "antd";
+import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
+const { RangePicker } = DatePicker;
 
 const Home = () => {
-  const { cars } = useSelector(state => state.carsReducer);
-  const { loading } = useSelector(state => state.alertsReducer);
+  const { cars } = useSelector((state) => state.carsReducer);
+  const { loading } = useSelector((state) => state.alertsReducer);
+  const [totalCars, setTotalCars] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllCars());
   }, []);
-    
+
+  useEffect(() => {
+    setTotalCars(cars);
+  }, [cars]);
+
+  function setFilter(values) {
+    // console.log("setFilter triggered");
+
+    // var selectedFrom = values[0].$d;
+    // var selectedTo = values[1].$d;
+
+    var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
+    var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
+
+    console.log(selectedFrom + "\n" + selectedTo);
+    var temp = [];
+
+    for (let car of cars) {
+      // console.log("for(var car of cars)");
+      if (car.bookedTimeSlots.length === 0) {
+        // console.log("pushed when length is 0");
+        temp.push(car);
+      } else {
+        for (let booking of car.bookedTimeSlots) {
+          // console.log("for(var booking of car.bookedTimeSlots)");
+
+          var bookedFrom = moment(booking.from).format("MMM DD YYYY HH:mm");
+          var bookedTo = moment(booking.to).format("MMM DD YYYY HH:mm");
+
+          // var bookedFrom = booking.from;
+          // var bookedTo = booking.to;
+
+          console.log(bookedFrom + "\n" + bookedTo);
+          if (
+            moment(selectedFrom).isBetween(moment(booking.from), moment(booking.to)) ||
+            moment(selectedTo).isBetween(moment(booking.from), moment(booking.to)) ||
+            moment(bookedFrom).isBetween(moment(selectedFrom), moment(selectedTo)) ||
+            moment(bookedTo).isBetween(moment(selectedFrom), moment(selectedTo))
+          ) {
+            // console.log("condition checked no push");
+          } else {
+            // console.log("pushed when length is not 0");
+            temp.push(car);
+          }
+        }
+      }
+    }
+    setTotalCars(temp);
+  }
 
   return (
     <DefaultLayout>
-      { loading === true && (<Spinner/>)}
-    {/* <div>length of cars array is  {cars.length}</div> */}
-      <Row justify="center" gutter={16} className="mt-5">
+      {/* <div>length of cars array is  {cars.length}</div> */}
 
-        {cars.map(car=>{
-          return  <Col lg={5} sm={24} xs={24} >
-            <div className='car p-2 bs1 mt-3'>
-              <img src={car.image} alt='a car' className='carimg'/>
+      <Row className="mt-4" justify="center">
+        <Col lg={20} sm={24} className="d-flex justify-content-left">
+          <RangePicker
+            showTime={{ format: "HH:mm" }}
+            format="MMM DD YYYY HH:mm"
+            onChange={setFilter}
+          />
+        </Col>
+      </Row>
+      {loading === true && <Spinner />}
 
-              <div className='car-content d-flex align-items-center justify-content-between'>
-                <div>
-                  <p>{car.name}</p>
-                  <p>{car.rentPerHour} Rent Per Hour /-</p>
-                </div>
-                <div>
-                  <button className='btn1'><Link to={`/booking/${car._id}`}>BOOK NOW</Link></button>
+      <Row justify="center mt-1" gutter={16}>
+        {totalCars.map((car) => {
+          return (
+            <Col lg={5} sm={24} xs={24}>
+              <div className="car p-2 bs1 mt-3">
+                <img src={car.image} alt="a car" className="carimg" />
+
+                <div className="car-content d-flex align-items-center justify-content-between">
+                  <div>
+                    <p>{car.name}</p>
+                    <p>{car.rentPerHour} Rent Per Hour /-</p>
+                  </div>
+                  <div>
+                    <button className="btn1">
+                      <Link to={`/booking/${car._id}`}>BOOK NOW</Link>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Col>
+            </Col>
+          );
         })}
-
       </Row>
     </DefaultLayout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

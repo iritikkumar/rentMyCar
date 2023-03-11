@@ -7,18 +7,18 @@ const DefaultLayout = (props) => {
 
   const user =JSON.parse(localStorage.getItem('user'))
 
-  const menu = (
+  const items = (
     <Menu>
       <Menu.Item>
       <a href="/">
           Home
         </a>
       </Menu.Item>
-      <Menu.Item>
-        {/* <a href="/booking">
+      {/* <Menu.Item>
+        <a href="/booking">
           Bookings
-        </a> */}
-      </Menu.Item>
+        </a>
+      </Menu.Item> */}
       <Menu.Item>
         <a  href="http://www.taobao.com/">
           Profile
@@ -41,10 +41,15 @@ const DefaultLayout = (props) => {
           <Row gutter ={16} justify='center'>
             <Col lg={20} sm={24} xs={24}>
               <div className='d-flex justify-content-between'>
-                <a href='/' style={{"text-decoration":"none"}}>
+                <a href='/' style={{"textDecoration":"none"}}>
                   <h1>rentMyCar</h1>
                 </a>
-                <Dropdown overlay={menu} placement="bottomCenter">
+
+                {/* <Dropdown menu={{items}} placement="bottom">
+                  <Button>{user.username}</Button>
+                </Dropdown> */}
+
+                <Dropdown overlay={items} placement="bottomCenter">
                     <Button>{user.username}</Button>
                 </Dropdown>
               </div>            

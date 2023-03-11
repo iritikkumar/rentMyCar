@@ -85,11 +85,11 @@ const BookingCar = (match) =>{
 
           <Divider type='horizontal' dashed><h4><b>Select Time Slots</b></h4></Divider>
           <RangePicker showTime={{format: 'HH:mm'}} format ='MMM DD YYYY HH:mm' onChange={selectTimeSlots}/>
-
+          {from && to && (
           <div>
               <p>Total Hours: <b>{totalHours}</b></p>
               <p>Rent per Hour: <b>{car.rentPerHour}</b></p>
-              <p>Driver charges: <b>30</b></p>
+              <p>Driver charges per Hour: <b>30</b></p>
               <Checkbox onChange={(e)=>{
                 if(e.target.checked)
                 {
@@ -104,20 +104,12 @@ const BookingCar = (match) =>{
               <h3>Total Amount : {totalAmount}</h3>
 
               <button classsname="btn1" onClick={bookNow}>Book Now</button>
-          </div>
+          </div>)}
           
         </Col>
 
       </Row>
-{/* 
 
-
-    <div>
-    <h1>BookingCar Page</h1>
-    <h1>Car Id ={carid}</h1>
-    <h1>Car Name ={car.name}</h1>
-
-    </div> */}
     </DefaultLayout>
   )
 }
