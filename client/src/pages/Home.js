@@ -56,9 +56,9 @@ const Home = () => {
             moment(bookedFrom).isBetween(moment(selectedFrom), moment(selectedTo)) ||
             moment(bookedTo).isBetween(moment(selectedFrom), moment(selectedTo))
           ) {
-            // console.log("condition checked no push");
+            console.log("condition checked no push");
           } else {
-            // console.log("pushed when length is not 0");
+            console.log("pushed when length is not 0");
             temp.push(car);
           }
         }

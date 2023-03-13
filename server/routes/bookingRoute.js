@@ -17,7 +17,7 @@ router.post("/bookcar", async (req, res) => {
       source: token.id,
     });
 
-    const paymentIntent = await stripe.paymentIntents.create(
+    const payment = await stripe.paymentIntents.create(
       {
         amount: req.body.totalAmount * 100,
         currency: "inr",
@@ -27,15 +27,6 @@ router.post("/bookcar", async (req, res) => {
       },
       {
         idempotencyKey: uuidv4(),
-      }
-    );
-
-    const payment = await stripe.paymentIntents.create(
-      {
-        
-      },
-      {
-        
       }
     );
 
@@ -69,5 +60,7 @@ router.get("/getallbookings", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+
+
 
 module.exports = router;

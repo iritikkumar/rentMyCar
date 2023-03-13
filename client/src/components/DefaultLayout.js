@@ -14,11 +14,11 @@ const DefaultLayout = (props) => {
           Home
         </a>
       </Menu.Item>
-      {/* <Menu.Item>
-        <a href="/booking">
-          Bookings
+      <Menu.Item>
+        <a href="/userBooking">
+          My Bookings
         </a>
-      </Menu.Item> */}
+      </Menu.Item>
       <Menu.Item>
         <a  href="http://www.taobao.com/">
           Profile

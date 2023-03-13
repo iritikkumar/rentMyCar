@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import BookingCar from './pages/BookingCar';
 import antd from "antd"
+import UserBooking from './pages/UserBooking';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path='/booking/:carid' element = {
               <BookingCar/>
           }/>
-
+          <Route path='/userBooking' element = {<UserBooking/>}/>
         </Routes> 
       </BrowserRouter>
 
