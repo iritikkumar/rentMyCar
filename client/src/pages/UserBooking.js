@@ -4,6 +4,7 @@ import DefaultLayout from '../components/DefaultLayout'
 import { getAllBookings } from '../redux/actions/bookingActions';
 import {Row, Col} from 'antd';
 import moment, { relativeTimeRounding } from 'moment';
+import Spinner from '../components/Spinner';
 
 
 function UserBooking() {
@@ -11,6 +12,7 @@ function UserBooking() {
     const dispatch = useDispatch();
     const {bookings} = useSelector(state =>state.bookingsReducer)
     const user= JSON.parse(localStorage.getItem("user"))
+    const { loading } = useSelector((state) => state.alertsReducer);
     useEffect(() =>{
 
         dispatch(getAllBookings())
@@ -19,6 +21,8 @@ function UserBooking() {
 
   return (
     <DefaultLayout>
+
+        {loading === true && <Spinner />}
         <h3 className='text-center mt-2'>My Bookings</h3>
 
         <Row justify='center' gutter={16}>

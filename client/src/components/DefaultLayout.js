@@ -42,7 +42,7 @@ const DefaultLayout = (props) => {
             <Col lg={20} sm={24} xs={24}>
               <div className='d-flex justify-content-between'>
                 <a href='/' style={{"textDecoration":"none"}}>
-                  <h1>rentMyCar</h1>
+                  <h1><Link to ='/'>rentMyCar</Link></h1>
                 </a>
 
                 {/* <Dropdown menu={{items}} placement="bottom">
