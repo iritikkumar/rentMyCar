@@ -95,3 +95,8 @@ p{
 .text-right{
   text-align: right;
 }
+
+svg{
+  height:18px !important;
+  width: 18px !important;
+}
