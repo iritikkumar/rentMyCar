@@ -11,15 +11,15 @@ router.get("/getallcars", async (req, res) => {
   }
 });
 
-router.post("/addcar", async (req, res) => {
-  try {
-    const newcar = new Car(req.body);
-    await newcar.save();
-    res.send("Car added successfully");
-  } catch (err) {
-    return res.status(400).json(err);
-  }
-});
+// router.post("/addcar", async (req, res) => {
+//   try {
+//     const newcar = new Car(req.body);
+//     await newcar.save();
+//     res.send("Car added successfully");
+//   } catch (err) {
+//     return res.status(400).json(err);
+//   }
+// });
 
 router.post("/editcar", async (req, res) => {
   try {
@@ -45,6 +45,19 @@ router.post("/deletecar", async (req, res) => {
   } catch (err) {
     return res.status(400).json(err);
   }
+});
+
+router.post("/addcar", async(req, res) =>{
+
+    try{
+      const newCar = new Car(req.body);
+      await newCar. save();
+      res.send("Car added successfully");
+    }catch(err)
+    {
+        console.log("From route of car")
+        return res.status(400).json(error);
+    }
 });
 
 module.exports = router;

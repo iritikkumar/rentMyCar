@@ -22,7 +22,7 @@ function App() {
               <BookingCar/>
           }/>
           <Route path='/userBooking' element = {<UserBooking/>}/>
-          <Route path='/addCar' element ={<AddCars/>}/>
+          <Route path='/addcar' element ={<AddCars/>}/>
         </Routes> 
       </BrowserRouter>
 
