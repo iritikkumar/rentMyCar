@@ -3,7 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCars } from "../redux/actions/carsActions";
-import { Row, Col, DatePicker } from "antd";
+import { Row, Col, DatePicker, Button } from "antd";
 import { DeleteOutlined , EditOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -29,6 +29,14 @@ const AdminHome = () => {
     <DefaultLayout>
       {/* <div>length of cars array is  {cars.length}</div> */}
 
+      <Row justify="center mt-3" gutter={16}>
+
+        <Col lg={20} sm={24}>
+          <div className="text-right">
+            <Button className="btn1" style={{textAlign:"center"}}><a href='/addcar'>ADD CAR</a></Button>
+          </div>
+        </Col>
+      </Row>
 
       {loading === true && <Spinner />}
 

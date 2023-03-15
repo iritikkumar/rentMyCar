@@ -20,8 +20,8 @@ const DefaultLayout = (props) => {
         </a>
       </Menu.Item>
       <Menu.Item>
-        <a  href="http://www.taobao.com/">
-          Profile
+        <a  href="/admin">
+          Admin
         </a>
       </Menu.Item>
       <Menu.Item onClick={()=>{
