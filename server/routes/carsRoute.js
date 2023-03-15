@@ -60,4 +60,25 @@ router.post("/addcar", async(req, res) =>{
     }
 });
 
+router.post("/editcar", async(req, res) =>{
+
+  try{
+    const car = await Car.findOne({_id: req.body._id})
+    car.name = req.body.name;
+    car.image= req.body.image
+    car.fuelType = req.body.fuelType
+    car.rentPerHour = req.body.rentPerHour
+    car.capacity = req.body.capacity
+
+    await car.save()
+
+    res.send("Car details updated successfully");
+  }catch(err)
+  {
+      console.log("From route of car")
+      return res.status(400).json(error);
+  }
+});
+
+
 module.exports = router;
