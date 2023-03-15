@@ -7,6 +7,7 @@ import { Row, Col, DatePicker, Button } from "antd";
 import { DeleteOutlined , EditOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import { message, Popconfirm } from 'antd';
 const { RangePicker } = DatePicker;
 
 const AdminHome = () => {
@@ -54,7 +55,18 @@ const AdminHome = () => {
                   </div>
                   <div className="mr-4">
                         <Link to ={`/editcar/${car._id}`}><EditOutlined className="mr-3" style={{color:'green', cursor:'pointer'}}/></Link>
-                        <DeleteOutlined style={{color:'red', cursor:'pointer'}}/>
+
+
+                        <Popconfirm
+                            title="Delete the task"
+                            description="Are you sure to delete this task?"
+                            onConfirm={()=>{}}
+                            okText="Yes"
+                            cancelText="No"
+                          >
+                            <DeleteOutlined style={{color:'red', cursor:'pointer'}}/>
+                          </Popconfirm>
+                        
                   </div>
                 </div>
               </div>
