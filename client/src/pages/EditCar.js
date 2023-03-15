@@ -4,7 +4,7 @@ import { useDispatch , useSelector} from 'react-redux'
 import { getAllCars } from "../redux/actions/carsActions";
 import DefaultLayout from '../components/DefaultLayout'
 import Spinner from '../components/Spinner'
-import { addCar } from '../redux/actions/carsActions'
+import { addCar ,editCar} from '../redux/actions/carsActions'
 import { useParams } from 'react-router-dom';
 
 
@@ -24,7 +24,7 @@ const EditCar = ({match}) => {
         }
         else 
           {
-            // settotalcars(cars)
+            settotalcars(cars)
             setcar(cars.find(o=>o._id==carid))
             // car._id= carid
             console.log(carid)
@@ -36,8 +36,9 @@ const EditCar = ({match}) => {
     
     function onFinish(values)
     {
-        values.bookedTimeSlots = []
-        dispatch(addCar(values))
+        // values.bookedTimeSlots = []
+        values._id = car._id
+        dispatch(editCar(values))
         // console.log(values);
         console.log("htadia");
     }
@@ -52,7 +53,7 @@ const EditCar = ({match}) => {
             <Col lg={12} sm={24} xs={24}>
             
             {/* var = {car.name} */}
-            {/* var */}
+            var
 
                 {cars.length>0 && (<Form initialValues={car} className='bs1 p-2' justify='cener' layout='vertical' onFinish={onFinish}>
                     <h3>Edit Car</h3>
