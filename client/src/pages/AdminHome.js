@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCars } from "../redux/actions/carsActions";
+import { getAllCars ,deleteCar} from "../redux/actions/carsActions";
 import { Row, Col, DatePicker, Button } from "antd";
 import { DeleteOutlined , EditOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
@@ -56,11 +56,10 @@ const AdminHome = () => {
                   <div className="mr-4">
                         <Link to ={`/editcar/${car._id}`}><EditOutlined className="mr-3" style={{color:'green', cursor:'pointer'}}/></Link>
 
-
                         <Popconfirm
                             title="Delete the task"
-                            description="Are you sure to delete this task?"
-                            onConfirm={()=>{}}
+                            description="Are you sure to delete this car?"
+                            onConfirm={()=>{dispatch(deleteCar({carid : car._id}))}}
                             okText="Yes"
                             cancelText="No"
                           >
