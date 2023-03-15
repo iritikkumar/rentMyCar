@@ -80,5 +80,19 @@ router.post("/editcar", async(req, res) =>{
   }
 });
 
+router.post("/deletecar", async(req, res) =>{
+
+  try{
+    await Car.findOneAndRemove({_id: req.body._id})
+
+
+    res.send("Car deleted successfully");
+  }catch(err)
+  {
+      console.log("From route of car")
+      return res.status(400).json(error);
+  }
+});
+
 
 module.exports = router;
