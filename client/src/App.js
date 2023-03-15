@@ -8,6 +8,7 @@ import antd from "antd"
 import UserBooking from './pages/UserBooking';
 import AddCars from './pages/AddCars';
 import AdminHome from './pages/AdminHome';
+import EditCar from './pages/EditCar';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           }/>
           <Route path='/userBooking' element = {<UserBooking/>}/>
           <Route path='/addcar' element ={<AddCars/>}/>
+          <Route path='/editcar/:carid' element={<EditCar/>}/>
           <Route path='/admin' element={<AdminHome/>} />
         </Routes> 
       </BrowserRouter>

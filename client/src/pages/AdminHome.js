@@ -45,7 +45,7 @@ const AdminHome = () => {
                     <p>{car.rentPerHour} Rent Per Hour /-</p>
                   </div>
                   <div className="mr-4">
-                        <EditOutlined className="mr-3" style={{color:'green', cursor:'pointer'}}/>
+                        <Link to ={`/editcar/${car._id}`}><EditOutlined className="mr-3" style={{color:'green', cursor:'pointer'}}/></Link>
                         <DeleteOutlined style={{color:'red', cursor:'pointer'}}/>
                   </div>
                 </div>
