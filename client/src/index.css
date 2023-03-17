@@ -22,6 +22,11 @@ h1{
   font-weight: bold;
   color: teal;
 }
+
+.footer{
+  background-color:cadetblue;
+  
+}
 p{
   margin: 5px !important;
   /* text-align: left; */

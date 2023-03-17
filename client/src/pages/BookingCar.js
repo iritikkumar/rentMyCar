@@ -73,7 +73,7 @@ const BookingCar = (match) =>{
     <DefaultLayout>
       {loading && <Spinner/>}
       {/* <Row justify='center' className='mt-5'> */}
-      <Row justify='center' className='d-flex align-items-center' style={{minHeight:'90vh'}}>
+      <Row justify='center' className='d-flex align-items-center p-2' style={{minHeight:'90vh'}}>
         <Col lg={10} sm={24} xs={24}>
           <img src={car.image} className='carimg2 bs1'/>
         </Col>

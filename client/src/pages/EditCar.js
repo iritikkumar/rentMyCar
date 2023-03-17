@@ -48,12 +48,12 @@ const EditCar = ({match}) => {
     <DefaultLayout>
 
         {loading && (<Spinner/>)}
-        <Row justify='center mt-5'>
+        <Row justify='center mt-3'>
 
-            <Col lg={12} sm={24} xs={24}>
+            <Col lg={12} sm={24} xs={24} className='p-2'>
             
             {/* var = {car.name} */}
-            var
+            {/* var */}
 
                 {cars.length>0 && (<Form initialValues={car} className='bs1 p-2' justify='cener' layout='vertical' onFinish={onFinish}>
                     <h3>Edit Car</h3>

@@ -14,7 +14,6 @@ function UserBooking() {
     const user= JSON.parse(localStorage.getItem("user"))
     const { loading } = useSelector((state) => state.alertsReducer);
     useEffect(() =>{
-
         dispatch(getAllBookings())
     }, []);
 
@@ -29,7 +28,7 @@ function UserBooking() {
 
             <Col lg={20} sm={24}>
 
-                    {/* <h1>Checking</h1> */}
+                    <h1>Checking</h1>
 
 
                     {bookings.filter(o=>o.user==user._id).map(booking =>{
@@ -52,9 +51,8 @@ function UserBooking() {
                             </Col>
 
                             <Col lg={7} sm={24}>
-
-                                <img src={booking.car.image} height="125" width= "250" classname="p-4" />
-                            </Col>
+                                <img src={booking.car.image} height="125" width= "200" classname="p-4" /> 
+                             </Col>
                         </Row>
                         )
                     })}
