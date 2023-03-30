@@ -64,11 +64,11 @@ router.post("/login", async (req,res)=>{
 
 router.post("/google", async(req, res)=>{
     try{
-        // console.log("email is " + req.body.email)
+        console.log("email is " + req.body.email);
         const user = await User.findOne({email: req.body.email});
         if(user){
-            // console.log(user);
-            // console.log("google user already exist");
+            console.log(user);
+            console.log("google user already exist");
             
             const accessToken = jwt.sign(						// using jwt for more security
             {
@@ -80,31 +80,31 @@ router.post("/google", async(req, res)=>{
             );
             res.cookie("access_token", accessToken, {
                 httpOnly: true,
-            }).status(200).json(user._doc)
+            }).status(200).json(user._doc);
         }
         else{
-            // console.log("google creating new user");
             const newUser = new User({
                 ...req.body,
                 fromGoogle: true
             });
-            // console.log("new User " + newUser);
             const savedUser = await newUser.save();
+            // console.log("google creating new user");
+            // console.log(savedUser);
+
             const accessToken = jwt.sign(						// using jwt for more security
             {
                 id: savedUser._id,
-                isAdmin: user.isAdmin,
+                isAdmin: savedUser.isAdmin,
             }, 
-                process.env.JWT_SEC,
-                {expiresIn: "3d"}
+            process.env.JWT_SEC,
+            {expiresIn: "3d"}
             );
-            // console.log("google auth worked in backend")
             res.cookie("access_token", accessToken, {
                 httpOnly: true,
             }).status(200).json(savedUser._doc);
         }
     } catch(err){
-        // console.log("google auth failed backend");
+        console.log("google auth failed backend");
         return res.status(400).json(err);
     }
 })

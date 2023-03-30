@@ -16,8 +16,7 @@ const Register = () => {
   const {loading} = useSelector(state => state.alertsReducer)
     function onFinish(values){
       dispatch(userRegister(values))
-      console.log(values)
-      dispatch(userLogin({values}));
+      console.log(values);
     }
   return (
     <div className='login'>
