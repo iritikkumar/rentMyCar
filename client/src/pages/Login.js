@@ -59,6 +59,7 @@ const Login = () => {
               <Input/>
             </Form.Item>
             <button className='btn1 mt-3'>Login</button>
+            <hr/>
             <button className='btn1' onClick={signInWithGoogle}>Signin With Google</button>
             <hr/>
             <Link to="/register">Click here to register</Link>

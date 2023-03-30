@@ -24,9 +24,8 @@ export const googleAuth=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING', payload: true});
     try {
         const response = await axios.post("/api/users/google",reqObj);
-        // console.log("inside google userActions.js" );
-        // console.log(response);
-
+        console.log("inside google userActions.js" );
+        console.log(response);
 
         localStorage.setItem('user' , JSON.stringify(response.data))
         message.success('Login success with Google');
@@ -35,7 +34,7 @@ export const googleAuth=(reqObj)=>async dispatch=>{
             window.location.href='/'
         }, 500);
     } catch (err) {
-        message.error(err.data);
+        message.error("Something went wrong");
         console.log(err);
         dispatch({type: 'LOADING', payload: false});
     }
