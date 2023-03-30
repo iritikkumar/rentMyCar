@@ -31,7 +31,7 @@ const Home = () => {
     var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
     var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
 
-    console.log(selectedFrom + "\n" + selectedTo);
+    // console.log(selectedFrom + "\n" + selectedTo);
     var temp = [];
 
     for (let car of cars) {
@@ -49,16 +49,16 @@ const Home = () => {
           // var bookedFrom = booking.from;
           // var bookedTo = booking.to;
 
-          console.log(bookedFrom + "\n" + bookedTo);
+          // console.log(bookedFrom + "\n" + bookedTo);
           if (
             moment(selectedFrom).isBetween(moment(booking.from), moment(booking.to)) ||
             moment(selectedTo).isBetween(moment(booking.from), moment(booking.to)) ||
             moment(bookedFrom).isBetween(moment(selectedFrom), moment(selectedTo)) ||
             moment(bookedTo).isBetween(moment(selectedFrom), moment(selectedTo))
           ) {
-            console.log("condition checked no push");
+            // console.log("condition checked no push");
           } else {
-            console.log("pushed when length is not 0");
+            // console.log("pushed when length is not 0");
             temp.push(car);
           }
         }
@@ -87,7 +87,7 @@ const Home = () => {
           return (
             <Col lg={5} sm={24} xs={24}>
               <div className="car p-2 bs1 mt-3">
-                <img src={car.image} alt="a car" className="carimg" />
+                <img src={car.image} alt="a car" className="carimg"/>
 
                 <div className="car-content d-flex align-items-center justify-content-between">
                   <div>

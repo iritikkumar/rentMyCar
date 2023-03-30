@@ -3,6 +3,7 @@ import { Row, Col, Form, Input } from 'antd'
 import { Link } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import { userRegister } from '../redux/actions/userActions'
+import { userLogin } from '../redux/actions/userActions'
 import AOS from 'aos';
 import Spinner from '../components/Spinner'
 import 'aos/dist/aos.css'; // You can also use <link> for styles
@@ -16,6 +17,7 @@ const Register = () => {
     function onFinish(values){
       dispatch(userRegister(values))
       console.log(values)
+      dispatch(userLogin({values}));
     }
   return (
     <div className='login'>
@@ -34,6 +36,9 @@ const Register = () => {
         <h1>Register</h1>
         <hr/>
             <Form.Item name="username" label="Username" rules={[{required: true}]}>
+              <Input/>
+            </Form.Item>
+            <Form.Item name="email" label="Email" rules={[{required: true}]}>
               <Input/>
             </Form.Item>
             <Form.Item name="password" label="Password" rules={[{required: true}]}>
