@@ -87,6 +87,7 @@ const AddCars = () => {
         
         const onFinish =  (values) =>{
             values.bookedTimeSlots = [];
+            values.myOwner =  JSON.parse(localStorage.getItem('user'))._id;
             values.image = url;
             dispatch(addCar(values))
             console.log(values);

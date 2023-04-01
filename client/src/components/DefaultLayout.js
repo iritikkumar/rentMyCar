@@ -21,7 +21,7 @@ const DefaultLayout = (props) => {
       </Menu.Item>
       <Menu.Item>
         <a  href="/admin">
-          Admin
+          My Cars
         </a>
       </Menu.Item>
       <Menu.Item onClick={()=>{

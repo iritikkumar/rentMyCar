@@ -14,6 +14,9 @@ const AdminHome = () => {
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
   const [totalCars, setTotalCars] = useState([]);
+  // const [ myCars, setMyCars ] = useState([]);
+  const myCars= [];
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +27,30 @@ const AdminHome = () => {
     setTotalCars(cars);
   }, [cars]);
 
+  for(var i=0; i<cars.length; i++)
+  {
+    if(cars[i].myOwner== JSON.parse(localStorage.getItem('user'))._id)
+    {
+      // console.log(cars[i]);
+      myCars.push(cars[i]);
+    }
+  }
+  // console.log(myCars.length);
 
+  // function findingMyCars()
+  // {
+  //   console.log(JSON.parse(localStorage.getItem('user'))._id);
+  
+  
+  //     setMyCars(cars.find(o=>o.myOwner ==JSON.parse(localStorage.getItem('user'))._id));
+  // }
+  
+  // useEffect(() =>{
+    
+  //     console.log(JSON.parse(localStorage.getItem('user'))._id);
+  //     console.log(cars.myOwner)
+  //   // setMyCars(cars.find(o=>o.myOwner ==JSON.parse(localStorage.getItem('user'))._id));
+  // });
 
   return (
     <DefaultLayout>
@@ -42,7 +68,7 @@ const AdminHome = () => {
       {loading === true && <Spinner />}
 
       <Row justify="center mt-1" gutter={16}>
-        {totalCars.map((car) => {
+        {myCars.map((car) => {
           return (
             <Col lg={5} sm={24} xs={24}>
               <div className="car p-2 bs1 mt-3">
