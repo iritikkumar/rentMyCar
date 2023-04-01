@@ -1,5 +1,6 @@
 import './App.css';
-import {Route, Routes, BrowserRouter, Navigate} from "react-router-dom"
+import React, {Fragment} from 'react';
+import {Route, Routes, BrowserRouter, Navigate, Outlet} from "react-router-dom"
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,23 +11,23 @@ import AddCars from './pages/AddCars';
 import AdminHome from './pages/AdminHome';
 import EditCar from './pages/EditCar';
 
+const auth = localStorage.getItem('user');
+
 function App() {
   return (
     <div >
       <BrowserRouter>
         <Routes>
-          <Route path='/' element = {
-              <Home/>
-          }/>
+          <Route path='/' element = { auth?<Home/>:<Login/>}/>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/register' element = {<Register/>}/>
-          <Route path='/booking/:carid' element = {
-              <BookingCar/>
+          <Route path='/booking/:carid' element = { auth?
+              <BookingCar/> : <Login/>
           }/>
-          <Route path='/userBooking' element = {<UserBooking/>}/>
-          <Route path='/addcar' element ={<AddCars/>}/>
-          <Route path='/editcar/:carid' element={<EditCar/>}/>
-          <Route path='/admin' element={<AdminHome/>} />
+          <Route path='/userBooking' element = {auth ? <UserBooking/> : <Login/>}/>
+          <Route path='/addcar' element ={auth ? <AddCars/> : <Login/>}/>
+          <Route path='/editcar/:carid' element={auth ? <EditCar/> : <Login/>}/>
+          <Route path='/admin' element={auth ? <AdminHome/> : <Login/>} />
         </Routes> 
       </BrowserRouter>
 
@@ -36,14 +37,3 @@ function App() {
 
 export default App;
 
-export function ProtectedRoute(props)
-{
-  if(localStorage.getItem('user'))
-  {
-    return <Route {...props}/>
-  }
-  else
-  {
-    return <Navigate to='/login'/> 
-  }
-}
