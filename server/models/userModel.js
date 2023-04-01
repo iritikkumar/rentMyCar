@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
      password : {type:String },
      isAdmin: { type: Boolean, default: false },
      fromGoogle: {type: Boolean, default: false},
+     contactNumber: {type: Number },
      },
      { timestamps: true}
 );

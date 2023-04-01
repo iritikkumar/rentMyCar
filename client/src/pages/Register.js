@@ -38,13 +38,13 @@ const Register = () => {
               <Input/>
             </Form.Item>
             <Form.Item name="email" label="Email" rules={[{required: true}]}>
-              <Input/>
+              <Input type='email'/>
             </Form.Item>
             <Form.Item name="password" label="Password" rules={[{required: true}]}>
-              <Input/>
+              <Input type='password'/>
             </Form.Item>
             <Form.Item name="cpassword" label="Confirm Password" rules={[{required: true}]}>
-              <Input/>
+              <Input type='password'/>
             </Form.Item>
             <button className='btn1 mt-2 mh-5'>Register</button>
             <hr/>
