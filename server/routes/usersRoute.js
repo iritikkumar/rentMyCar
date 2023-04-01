@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 
 router.get("/getallusers", async (req, res) => {
     try {
-      const cars = await User.find();
-      res.send(cars);
-      console.log(cars);
+      const users = await User.find();
+      res.send(users);
+      console.log(users);
     } catch (err) {
       return res.status(400).json(err);
     }
