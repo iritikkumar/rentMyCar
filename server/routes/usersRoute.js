@@ -88,8 +88,8 @@ router.post("/google", async(req, res)=>{
                 fromGoogle: true
             });
             const savedUser = await newUser.save();
-            // console.log("google creating new user");
-            // console.log(savedUser);
+            console.log("google creating new user");
+            console.log(savedUser);
 
             const accessToken = jwt.sign(						// using jwt for more security
             {

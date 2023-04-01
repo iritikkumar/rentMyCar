@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider} from "firebase/auth"
+import { applyMiddleware } from "redux";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAJ7R-Wl3HQVhdpHZ2EXprasLyawAB5q24",
@@ -14,4 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const provider = new GoogleAuthProvider();
-export default app;
+// export default app;
+
+const storage = getStorage(app);
+export default {storage, app};
