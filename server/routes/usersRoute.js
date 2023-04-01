@@ -3,6 +3,19 @@ const User = require("../models/userModel");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
+
+router.get("/getallusers", async (req, res) => {
+    try {
+      const users = await User.find();
+      res.send(users);
+      console.log(users);
+    } catch (err) {
+      return res.status(400).json(err);
+    }
+  });
+
+
+
 // REGISTER
 router.post("/register", async (req,res)=>{
     if(req.body.password !== req.body.cpassword){
