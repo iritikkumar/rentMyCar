@@ -15,8 +15,8 @@ const AddCars = () => {
     const { loading } = useSelector(state => state.alertsReducer);
     const [file , setFile] = useState("");
     const [percent, setPercent] = useState(0);  
-    // const [url, setURL] = useState("")
-    const url="";
+    const [url, setURL] = useState("")
+    // const url="";
 
 
 
@@ -78,7 +78,7 @@ const AddCars = () => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
-                url = downloadURL;
+                setURL(downloadURL);
                 });
             }
             );
@@ -86,6 +86,7 @@ const AddCars = () => {
         
         const onFinish =  (values) =>{
             values.bookedTimeSlots = [];
+            values.myOwner =  JSON.parse(localStorage.getItem('user'))._id;
             values.image = url;
             dispatch(addCar(values))
             console.log(values);

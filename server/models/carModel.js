@@ -10,6 +10,11 @@ const carSchema = new mongoose.Schema({
         type : String , 
         required : true
     } , 
+    myOwner:{
+        type : mongoose.Schema.Types.ObjectID , 
+        ref:'users',
+        required: true
+    },
     capacity : {
         type : Number , 
         required : true
