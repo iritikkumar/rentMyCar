@@ -12,16 +12,23 @@ router.post("/register", async (req,res)=>{
     const newUser = new User({
         username: req.body.username,
         email: req.body.email,
+        isDriver: req.body.isDriver,
         password: CryptoJS.AES.encrypt(				// to make password encrypted
             req.body.password, 
             process.env.PASS_SEC					
         ).toString(),
     });
 
+
+    console.log(newUser);
+
     try{
         const savedUser = await newUser.save();			// async finc
         res.status(201).json(savedUser);
     } catch(err){
+        console.log(req);
+        console.log("Error ye h");
+        console.log(err);
         res.status(400).json(err);
     }    
 });
