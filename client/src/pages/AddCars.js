@@ -15,8 +15,8 @@ const AddCars = () => {
     const { loading } = useSelector(state => state.alertsReducer);
     const [file , setFile] = useState("");
     const [percent, setPercent] = useState(0);  
-    // const [url, setURL] = useState("")
-    const url="";
+    const [url, setURL] = useState("")
+    // const url="";
 
 
 
@@ -46,6 +46,7 @@ const AddCars = () => {
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setPercent(progress);
                 console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                 case 'paused':
@@ -78,7 +79,7 @@ const AddCars = () => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
-                url = downloadURL;
+                setURL(downloadURL);
                 });
             }
             );
