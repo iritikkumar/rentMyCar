@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
      isAdmin: { type: Boolean, default: false },
      fromGoogle: {type: Boolean, default: false},
      contactNumber: {type: Number },
+     isDriver: {type: Boolean, default: false},
      },
      { timestamps: true}
 );

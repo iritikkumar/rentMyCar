@@ -12,12 +12,23 @@ AOS.init();
 
 const Register = () => {
 
+  const [checked, setChecked] = React.useState(false);
   const dispatch = useDispatch()
   const {loading} = useSelector(state => state.alertsReducer)
-    function onFinish(values){
-      dispatch(userRegister(values))
+  
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+  
+  function onFinish(values){
+    values.isDriver = checked;
       console.log(values);
-    }
+      dispatch(userRegister(values))
+  }
+
+
+
   return (
     <div className='login'>
       {loading && (<Spinner/>)}
@@ -40,9 +51,28 @@ const Register = () => {
             <Form.Item name="email" label="Email" rules={[{required: true}]}>
               <Input type='email'/>
             </Form.Item>
+
+            <Form.Item name="isDriver" label="SignIn as" className='d-flex' >
+              <label >
+                  <Input type='checkbox' 
+                    label="isDriver" 
+                    checked={checked}
+                    onChange={handleChange} 
+                    rules={[{required: true}]}
+                  />
+                  Driver
+              </label>
+            </Form.Item>
+
+            <Form.Item name="number" label="Contact Number" rules={[{required: true}]}>
+              <Input type='number'/>
+            </Form.Item>
+
+
             <Form.Item name="password" label="Password" rules={[{required: true}]}>
               <Input type='password'/>
             </Form.Item>
+
             <Form.Item name="cpassword" label="Confirm Password" rules={[{required: true}]}>
               <Input type='password'/>
             </Form.Item>

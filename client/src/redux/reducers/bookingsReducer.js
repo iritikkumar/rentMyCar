@@ -4,7 +4,6 @@ const initialData = {
 
 export const bookingsReducer  = (state = initialData, action)=>{
     switch(action.type){
-
         case 'GET_ALL_BOOKINGS': {
             return {
                 ...state,
@@ -12,7 +11,6 @@ export const bookingsReducer  = (state = initialData, action)=>{
             }
 
         }
-
         default: return state
     }
 }

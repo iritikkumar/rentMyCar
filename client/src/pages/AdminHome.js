@@ -35,18 +35,15 @@ const AdminHome = () => {
       myCars.push(cars[i]);
     }
   }
-  // console.log(myCars.length);
 
+
+  // console.log(myCars.length);
   // function findingMyCars()
   // {
-  //   console.log(JSON.parse(localStorage.getItem('user'))._id);
-  
-  
+  //   console.log(JSON.parse(localStorage.getItem('user'))._id); 
   //     setMyCars(cars.find(o=>o.myOwner ==JSON.parse(localStorage.getItem('user'))._id));
   // }
-  
   // useEffect(() =>{
-    
   //     console.log(JSON.parse(localStorage.getItem('user'))._id);
   //     console.log(cars.myOwner)
   //   // setMyCars(cars.find(o=>o.myOwner ==JSON.parse(localStorage.getItem('user'))._id));
