@@ -16,7 +16,8 @@ export const getAllCars = () => async dispatch => {
 
 export const addCar =(reqObj) => async dispatch =>{
     dispatch({type: 'LOADING', payload: true});
-    // console.log("Kamine")
+    console.log("ReqObj: Car Actions")
+    console.log(reqObj)
     try {
         const response = await axios.post("/api/cars/addcar", reqObj);
 
