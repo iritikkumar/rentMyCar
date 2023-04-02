@@ -64,10 +64,13 @@ const Register = () => {
               </label>
             </Form.Item>
 
-            <Form.Item name="number" label="Contact Number" rules={[{required: true}]}>
+            <Form.Item name="contactNumber" label="Contact Number" rules={[{required: true}]}>
               <Input type='number'/>
             </Form.Item>
 
+            <Form.Item name="location" label="Location" rules={[{required: true}]}>
+              <Input/>
+            </Form.Item>
 
             <Form.Item name="password" label="Password" rules={[{required: true}]}>
               <Input type='password'/>

@@ -25,6 +25,8 @@ router.post("/register", async (req,res)=>{
         username: req.body.username,
         email: req.body.email,
         isDriver: req.body.isDriver,
+        contactNumber: req.body.contactNumber,
+        location: req.body.location,
         password: CryptoJS.AES.encrypt(				// to make password encrypted
             req.body.password, 
             process.env.PASS_SEC					
