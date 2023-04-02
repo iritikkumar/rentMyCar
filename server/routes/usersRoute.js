@@ -15,7 +15,6 @@ router.get("/getallusers", async (req, res) => {
   });
 
 
-
 // REGISTER
 router.post("/register", async (req,res)=>{
     if(req.body.password !== req.body.cpassword){

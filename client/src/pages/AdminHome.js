@@ -31,7 +31,7 @@ const AdminHome = () => {
   {
     if(cars[i].myOwner== JSON.parse(localStorage.getItem('user'))._id)
     {
-      // console.log(cars[i]);
+      console.log(cars[i]);
       myCars.push(cars[i]);
     }
   }
