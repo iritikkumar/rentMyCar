@@ -13,7 +13,8 @@ const bookingSchema = new mongoose.Schema({
     bookedTimeSlots : {
         from : {type : String} ,
         to : {type : String}
-    } ,
+    },
+    star : {type: Number, default: 0},
     totalHours : {type : Number},
     totalAmount : {type : Number},
     transactionId : {type : String},
