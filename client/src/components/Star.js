@@ -16,11 +16,11 @@ function Star( {star, raters} ) {
         return <span key ={index}>
             {
                 star>= index+1 ? (
-                    <FaStar className="text-yellow-400" />
+                    <FaStar className='icon' />
                 ) : star >= number ?(
-                    <FaStarHalfAlt className="text-yellow-400" />
+                    <FaStarHalfAlt className='icon' />
                 ) : (
-                    <AiOutlineStar className="text-yellow-400" />
+                    <AiOutlineStar className='icon' />
                 )
             }
         </span>
