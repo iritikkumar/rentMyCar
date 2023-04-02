@@ -23,6 +23,14 @@ const carSchema = new mongoose.Schema({
         type : String , 
         required : true
     } , 
+    ratings :{
+        type: Number,
+        default : 4
+    },
+    raters :{
+        type: Number,
+        default : 0
+    },
     bookedTimeSlots : [
         {
             from : {type : String , required : true},

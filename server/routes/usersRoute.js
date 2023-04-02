@@ -8,7 +8,7 @@ router.get("/getallusers", async (req, res) => {
     try {
       const users = await User.find();
       res.send(users);
-      console.log(users);
+    //   console.log(users);
     } catch (err) {
       return res.status(400).json(err);
     }
