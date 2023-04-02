@@ -17,7 +17,7 @@ function Drivers() {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [totalUsers, setTotalUsers] = useState([]);
   const dispatch = useDispatch();
-
+  const drivers= []
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
@@ -27,10 +27,11 @@ function Drivers() {
   }, [users]);
 
 
-  // for(var i=0;i<drivers.length; i++)
-  // {
-  //     console.log(drivers[i]);
-  // }
+  for(var i=0;i<totalUsers.length; i++)
+  {
+      if(totalUsers[i].isDriver)
+        drivers.push(totalUsers[i]);
+  }
 
 
   return (
@@ -44,7 +45,7 @@ function Drivers() {
       <Row justify="center mt-1" gutter={16}>
 
       <Col lg={20} sm={24}>
-        {totalUsers.map((car) => {
+        {drivers.map((car) => {
           return (
 
             <Row gutter={16} className='bs1 m-4 text-left p-2' >

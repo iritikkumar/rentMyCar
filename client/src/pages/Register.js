@@ -52,18 +52,6 @@ const Register = () => {
               <Input type='email'/>
             </Form.Item>
 
-            <Form.Item name="isDriver" label="SignIn as" className='d-flex' >
-              <label >
-                  <Input type='checkbox' 
-                    label="isDriver" 
-                    checked={checked}
-                    onChange={handleChange} 
-                    rules={[{required: true}]}
-                  />
-                  Driver
-              </label>
-            </Form.Item>
-
             <Form.Item name="contactNumber" label="Contact Number" rules={[{required: true}]}>
               <Input type='number'/>
             </Form.Item>
@@ -79,6 +67,16 @@ const Register = () => {
             <Form.Item name="cpassword" label="Confirm Password" rules={[{required: true}]}>
               <Input type='password'/>
             </Form.Item>
+
+            <Form.Item name="isDriver" label="Are you a driver?" className='d-flex' >
+                  <Input type='checkbox' 
+                    checked={checked}
+                    onChange={handleChange} 
+                    rules={[{required: true}]}
+                  />
+            </Form.Item>
+
+
             <button className='btn1 mt-2 mh-5'>Register</button>
             <hr/>
             <Link to="/login">Click here to login</Link>
