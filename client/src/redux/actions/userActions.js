@@ -18,7 +18,23 @@ export const getAllUsers = () => async dispatch => {
     }
 }
 
+export const editMyProfile =(reqObj) => async dispatch =>{
+    dispatch({type: 'LOADING', payload: true});
+    try {
+        const response = await axios.post("/api/users/editMyProfile", reqObj);
 
+        dispatch({type: 'LOADING', payload: false});
+        // console.log('CCC')
+        message.success('User details updated successfully');
+        // setTimeout(()=> {
+        //     window.location.href ='/myProfile'
+        // }, 500);
+    } catch (err) {
+        console.log(err);
+        console.log("gltii");
+        dispatch({type: 'LOADING', payload: false});
+    }
+}
 
 
 export const userLogin=(reqObj)=>async dispatch=>{

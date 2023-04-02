@@ -24,6 +24,11 @@ const DefaultLayout = (props) => {
           My Cars
         </a>
       </Menu.Item>
+      <Menu.Item>
+        <a  href="/myProfile">
+          My Profile
+        </a>
+      </Menu.Item>
       <Menu.Item onClick={()=>{
         localStorage.removeItem('user')
         window.location.href='/login'

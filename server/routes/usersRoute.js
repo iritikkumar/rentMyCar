@@ -14,6 +14,27 @@ router.get("/getallusers", async (req, res) => {
     }
   });
 
+  router.post("/editMyProfile", async(req, res) =>{
+
+    try{
+      const user = await User.findOne({_id: req.body._id})
+      user.username = req.body.username;
+      user.image = req.body.image,
+      user.rentPerHour = req.body.rentPerHour;
+      user.contactNumber= req.body.contactNumber
+      user.location = req.body.location
+      user.isDriver = req.body.isDriver
+  
+      await user.save();
+  
+      res.send("User details updated successfully");
+    }catch(err)
+    {
+        console.log("User updation failed");
+        return res.status(400).json(error);
+    }
+  });
+
 
 // REGISTER
 router.post("/register", async (req,res)=>{

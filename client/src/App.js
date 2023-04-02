@@ -11,6 +11,8 @@ import AddCars from './pages/AddCars';
 import AdminHome from './pages/AdminHome';
 import EditCar from './pages/EditCar';
 import Drivers from './pages/Drivers';
+import MyProfile from './pages/MyProfile';
+
 
 const auth = localStorage.getItem('user');
 
@@ -29,7 +31,9 @@ function App() {
           <Route path='/addcar' element ={auth ? <AddCars/> : <Login/>}/>
           <Route path='/editcar/:carid' element={auth ? <EditCar/> : <Login/>}/>
           <Route path='/admin' element={auth ? <AdminHome/> : <Login/>} />
-          <Route path='/driver' element={auth ? <Drivers/> : <Login/> } />
+          <Route path='/drivers' element={auth ? <Drivers/> : <Login/> } />
+          <Route path='/myProfile' element={auth ? <MyProfile/> : <Login/> } />
+
         </Routes> 
       </BrowserRouter>
 

@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
      contactNumber: {type: Number ,  default: 1234567890},
      location: {type:String, default: "Lucknow"},
      isDriver: {type: Boolean, default: false},
+     rentPerHour: {type: Number, default: 0},
      image: {type: String, default: "https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper.png"},
      },
      { timestamps: true}
