@@ -6,6 +6,7 @@ import { getAllCars } from "../redux/actions/carsActions";
 import { Row, Col, DatePicker } from "antd";
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import Star from "../components/Star";
 const { RangePicker } = DatePicker;
 
 const Home = () => {
@@ -80,6 +81,8 @@ const Home = () => {
           />
         </Col>
       </Row>
+
+
       {loading === true && <Spinner />}
 
       <Row justify="center mt-1" gutter={16}>
@@ -93,6 +96,9 @@ const Home = () => {
                   <div>
                     <p>{car.name}</p>
                     <p>{car.rentPerHour} Rent Per Hour /-</p>
+                    {/* <p>{car.ratings}</p>
+                    <p>{car.raters}</p> */}
+                    <Star star={car.ratings} raters= {car.raters} />
                   </div>
                   <div>
                       <Link to={`/booking/${car._id}`} style={{textDecoration:'none'}}><button className="btn1">BOOK NOW</button>

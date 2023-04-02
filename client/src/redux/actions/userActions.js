@@ -8,7 +8,7 @@ export const getAllUsers = () => async dispatch => {
     try 
     {
         const response = await axios.get("/api/users/getallusers");
-        console.log(response);
+        // console.log(response);
         dispatch({type: 'GET_ALL_USERS', payload: response.data});
         dispatch({type: 'LOADING', payload: false});
     } catch (err) {
