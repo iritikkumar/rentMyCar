@@ -52,6 +52,27 @@ router.post("/bookcar", async (req, res) => {
   }
 });
 
+
+
+router.post("/ratecar", async (req, res) => {
+  // console.log(req.body);
+  try {
+    const booking = await Booking.findOne({car: req.body.car, user: req.body.user, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo} });
+    booking.star = req.body.rate;
+    console.log(booking);
+    await booking.save();
+    res.send("Booking details updated successfully");
+    // console.log(booking);
+    console.log("Tu b thk aaja ab");
+  } catch (error) {
+    console.log(error);
+    console.log("dikkt aai");
+    return res.status(400).json(error);
+  }
+});
+
+
+
 router.get("/getallbookings", async (req, res) => {
   try {
     const bookings = await Booking.find().populate("car");
@@ -62,3 +83,13 @@ router.get("/getallbookings", async (req, res) => {
 });
 
 module.exports = router;
+
+
+    // booking.user = req.body.user;
+    // booking.car = req.body.car;
+    // booking.bookedTimeSlots = req.body.bookedTimeSlots;
+    // booking.totalHours  = req.body.totalHours;
+    // booking.totalAmount = req.body.totalAmount;
+    // booking.transactionId = req.body.transactionId;
+    // booking.driverRequired = req.body.driverRequired;
+    // booking.

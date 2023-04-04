@@ -19,6 +19,27 @@ export const bookCar = (reqObj) => async dispatch => {
     }
 }
 
+
+export const rateCar = (reqObj) => async dispatch => {
+    dispatch({type: 'LOADING', payload: true});
+    console.log(reqObj);
+    try {
+        const response = await axios.post("/api/bookings/ratecar", reqObj);
+        // console.log("yghvjh");
+        message.success("Your car booked successfully");
+        // setTimeout(() =>{
+        //     window.location.href="/userBooking"
+        // }, 500);
+        console.log("Yha aaya");
+    } catch (err) {
+        console.log(err);
+        dispatch({type: 'LOADING', payload: false});
+        message.error("Something went wrong, please try later");
+        console.log("ni aya");
+    }
+}
+
+
 export const getAllBookings = () => async dispatch => {
     dispatch({type: 'LOADING', payload: true});
     try {
