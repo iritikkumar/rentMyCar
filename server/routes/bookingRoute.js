@@ -56,11 +56,22 @@ router.post("/bookcar", async (req, res) => {
 
 router.post("/ratecar", async (req, res) => {
   // console.log(req.body);
+  console.log(req.body.car);
   try {
     const booking = await Booking.findOne({car: req.body.car, user: req.body.user, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo} });
+    const car = await Car.findOne({_id: req.body.car});
+    if(req.body.rate>5)
+    {
+      req.body.rate=5;
+    }
+    car.ratings = (car.ratings*car.raters + req.body.rate)/(car.raters+1);
+    car.raters = car.raters+1;
     booking.star = req.body.rate;
-    console.log(booking);
+    // console.log(booking);
+    console.log(req.body.car);
+    console.log(car);
     await booking.save();
+    await car.save();
     res.send("Booking details updated successfully");
     // console.log(booking);
     console.log("Tu b thk aaja ab");

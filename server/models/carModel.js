@@ -13,7 +13,7 @@ const carSchema = new mongoose.Schema({
     myOwner:{
         type : mongoose.Schema.Types.ObjectID , 
         ref:'users',
-        required: true
+        // required: true
     },
     capacity : {
         type : Number , 
