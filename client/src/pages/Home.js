@@ -96,8 +96,6 @@ const Home = () => {
                   <div>
                     <p>{car.name}</p>
                     <p>{car.rentPerHour} Rent Per Hour /-</p>
-                    {/* <p>{car.ratings}</p>
-                    <p>{car.raters}</p> */}
                     <Star star={car.ratings} raters= {car.raters} />
                   </div>
                   <div>

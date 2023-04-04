@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
 import { getAllBookings } from '../redux/actions/bookingActions';
-import {Row, Col} from 'antd';
+import {Row, Col, Form} from 'antd';
 import moment, { relativeTimeRounding } from 'moment';
 import Spinner from '../components/Spinner';
 import Star from "../components/Star";
@@ -43,14 +43,12 @@ function UserBooking() {
                                 <p>Total Hours: <b>{booking.totalHours}</b></p>
                                 <p>Rent per Hour: <b>{booking.car.rentPerHour}</b></p>
                                 <p>Total Amount: <b>{booking.totalAmount}</b></p>
-                                {/* <p>{booking.user}</p> */}
-                                {/* <p>{JSON.stringify(booking)}</p> */}
-                                {/* <p>{booking.car._id}</p>
-                                <p>{booking._id}</p> */}
-                                {/* <p>{user}</p> */}
+                                
                                 <input type='number' onChange={(e) => {setRate(e.target.value)}}/>
+                                
                                 <Help car= {booking.car._id} user ={booking.user} bookedSlotFrom={booking.bookedTimeSlots.from} bookedSlotTo={booking.bookedTimeSlots.to} rate ={rate} />
-                                {/* <Help id={booking} rate = {rate} /> */}
+
+
                                 <p>Your ratings: <Star star={rate} raters={1} /></p>
                             </Col>
 
