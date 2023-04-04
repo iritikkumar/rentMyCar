@@ -26,7 +26,7 @@ export const rateCar = (reqObj) => async dispatch => {
     try {
         const response = await axios.post("/api/bookings/ratecar", reqObj);
         // console.log("yghvjh");
-        message.success("Your car booked successfully");
+        message.success("Your ratings saved successfully");
         // setTimeout(() =>{
         //     window.location.href="/userBooking"
         // }, 500);
