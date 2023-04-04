@@ -11,7 +11,7 @@ const bookingSchema = new mongoose.Schema({
         ref:'users'
     },
     bookedTimeSlots : {
-        from : {type : String} ,
+        from : {type : String, default: "hbuuhbjn"} ,
         to : {type : String}
     },
     star : {type: Number, default: 0},
