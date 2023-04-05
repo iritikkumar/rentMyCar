@@ -68,8 +68,9 @@ export const deleteCar =(reqObj) => async dispatch =>{
             window.location.reload()
         }, 500);
     } catch (err) {
-        console.log(err);
-        console.log("gltii");
+        // console.log(err.response.data);
+        // console.log("gltii");
+        message.error(err.response.data);
         dispatch({type: 'LOADING', payload: false});
     }
 }
