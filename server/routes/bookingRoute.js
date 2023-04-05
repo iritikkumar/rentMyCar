@@ -8,9 +8,9 @@ const stripe = require("stripe")(
 );
 
 router.post("/bookcar", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
-  const { token } = req.body;
+  // const { token } = req.body;
   try {
     const customer = await stripe.customers.create({
       email: token.email,
@@ -56,7 +56,7 @@ router.post("/bookcar", async (req, res) => {
 
 router.post("/ratecar", async (req, res) => {
   // console.log(req.body);
-  console.log(req.body.car);
+  // console.log(req.body.car);
   try {
     const booking = await Booking.findOne({car: req.body.car, user: req.body.user, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo} });
     const car = await Car.findOne({_id: req.body.car});
@@ -64,20 +64,21 @@ router.post("/ratecar", async (req, res) => {
     {
       req.body.rate=5;
     }
+    // console.log(req.body.rate);
     car.ratings = (car.ratings*car.raters + req.body.rate)/(car.raters+1);
     car.raters = car.raters+1;
     booking.star = req.body.rate;
     // console.log(booking);
-    console.log(req.body.car);
-    console.log(car);
+    // console.log(req.body.car);
+    // console.log(car);
     await booking.save();
     await car.save();
     res.send("Booking details updated successfully");
     // console.log(booking);
-    console.log("Tu b thk aaja ab");
+    console.log("Booking route(ratecar): Tu b thk aaja ab");
   } catch (error) {
     console.log(error);
-    console.log("dikkt aai");
+    console.log("dikkt aai booking route of ratecar me");
     return res.status(400).json(error);
   }
 });
@@ -94,13 +95,3 @@ router.get("/getallbookings", async (req, res) => {
 });
 
 module.exports = router;
-
-
-    // booking.user = req.body.user;
-    // booking.car = req.body.car;
-    // booking.bookedTimeSlots = req.body.bookedTimeSlots;
-    // booking.totalHours  = req.body.totalHours;
-    // booking.totalAmount = req.body.totalAmount;
-    // booking.transactionId = req.body.transactionId;
-    // booking.driverRequired = req.body.driverRequired;
-    // booking.

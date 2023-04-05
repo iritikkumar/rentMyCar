@@ -23,6 +23,9 @@ const Home = () => {
     setTotalCars(cars);
   }, [cars]);
 
+
+  
+  // console.log(cars);
   function setFilter(values) {
     // console.log("setFilter triggered");
 
@@ -34,13 +37,21 @@ const Home = () => {
 
     // console.log(selectedFrom + "\n" + selectedTo);
     var temp = [];
+    // console.log("total");
+    // console.log(totalCars);
+
+    // console.log("car ki length");
+    // console.log(cars);
 
     for (let car of cars) {
       // console.log("for(var car of cars)");
+      // console.log(car);
       if (car.bookedTimeSlots.length === 0) {
         // console.log("pushed when length is 0");
         temp.push(car);
       } else {
+
+        var flag = false;
         for (let booking of car.bookedTimeSlots) {
           // console.log("for(var booking of car.bookedTimeSlots)");
 
@@ -58,13 +69,20 @@ const Home = () => {
             moment(bookedTo).isBetween(moment(selectedFrom), moment(selectedTo))
           ) {
             // console.log("condition checked no push");
+            // break;
+            flag=true;
           } else {
-            // console.log("pushed when length is not 0");
-            temp.push(car);
+
           }
+        }
+
+        if(!flag)
+        {
+          temp.push(car);
         }
       }
     }
+
     setTotalCars(temp);
   }
 
