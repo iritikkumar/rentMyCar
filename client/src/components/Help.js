@@ -5,11 +5,9 @@ import {message} from 'antd'
 
 function Help( { car, user, bookedSlotFrom, bookedSlotTo , rate }) {
 
-
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state.alertsReducer);
     const [re,setRe] = useState(0);
-
 
     function send(){
         const reqObj = 

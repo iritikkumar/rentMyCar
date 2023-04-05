@@ -43,12 +43,8 @@ function UserBooking() {
                                 <p>Total Hours: <b>{booking.totalHours}</b></p>
                                 <p>Rent per Hour: <b>{booking.car.rentPerHour}</b></p>
                                 <p>Total Amount: <b>{booking.totalAmount}</b></p>
-                                
                                 <input type='number' onChange={(e) => {setRate(e.target.value)}}/>
-                                
                                 <Help car= {booking.car._id} user ={booking.user} bookedSlotFrom={booking.bookedTimeSlots.from} bookedSlotTo={booking.bookedTimeSlots.to} rate ={rate} />
-
-
                                 <p>Your ratings: <Star star={rate} raters={1} /></p>
                             </Col>
 
