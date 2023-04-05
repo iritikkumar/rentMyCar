@@ -55,3 +55,22 @@ export const getAllBookings = () => async dispatch => {
         
     }
 }
+
+
+export const deleteBooking =(reqObj) => async dispatch =>{
+    dispatch({type: 'LOADING', payload: true});
+    try {
+        const response = await axios.post("/api/bookings/deleteBooking", reqObj);
+
+        dispatch({type: 'LOADING', payload: false});
+        console.log('CCC')
+        message.success('Car deleted successfully');
+        setTimeout(()=> {
+            window.location.reload()
+        }, 500);
+    } catch (err) {
+        console.log(err);
+        console.log("gltii");
+        dispatch({type: 'LOADING', payload: false});
+    }
+}

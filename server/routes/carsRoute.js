@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Car = require("../models/carModel");
+const moment = require("moment");
 
 router.get("/getallcars", async (req, res) => {
   try {
@@ -14,6 +15,21 @@ router.get("/getallcars", async (req, res) => {
 
 router.post("/deletecar", async (req, res) => {
   try {
+    // console.log(req.body.carid)
+    const car = await Car.findOne({_id: req.body.carid});
+    // console.log(car);
+    const date = new Date();
+    // console.log("date without moment " + date);
+    const today = moment(date).format("MMM DD YYYY HH:mm");
+    // console.log("hello  "+  today);
+
+    for (let booking of car.bookedTimeSlots) {
+      // console.log(moment(today).isAfter(booking.to));
+      if(!moment(today).isAfter(booking.to) ){
+        // console.log(1 + "returning");
+        return res.status(400).json("Cannot delete car as it has bookings");
+      }
+    }
     await Car.findOneAndDelete({ _id: req.body.carid });
     res.send("Car deleted successfully");
   } catch (err) {

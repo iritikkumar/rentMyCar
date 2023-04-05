@@ -124,14 +124,6 @@ const BookingCar = (match) =>{
 
               <h3>Total Amount : {totalAmount}</h3>
               <button className="btn1" style={{fontWeight:"bold"}} onClick={onClick}>Book Now</button>
-              {/* <StripeCheckout
-                shippingAddress
-                token={onToken}
-                amount={totalAmount * 100}
-                currency="INR"
-                stripeKey="pk_test_51MQ3exSJMJym7GDQT41xwtNjAAuum2QEoaJJymREPGZncpr2tzJq6Fesf72zr8uOwg1S2Cvmi5XKCM5Xo7trODP400tuJlPdQU">
-                
-               </StripeCheckout>  */}
           </div>)}
           
         </Col>
