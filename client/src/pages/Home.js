@@ -29,10 +29,6 @@ const Home = () => {
   
   // console.log(cars);
   function setFilter(values) {
-    // console.log("setFilter triggered");
-
-    // var selectedFrom = values[0].$d;
-    // var selectedTo = values[1].$d;
 
     var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
     var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
@@ -40,23 +36,16 @@ const Home = () => {
     setTo(selectedTo);
     // console.log(selectedFrom + "\n" + selectedTo);
     var temp = [];
-    // console.log("total");
-    // console.log(totalCars);
-
-    // console.log("car ki length");
-    // console.log(cars);
 
     for (let car of cars) {
-      // console.log("for(var car of cars)");
-      // console.log(car);
-      if (car.bookedTimeSlots.length === 0) {
-        // console.log("pushed when length is 0");
+      if (car.bookedTimeSlots.length === 0){
+
         temp.push(car);
-      } else {
+      } 
+      else {
 
         var flag = false;
         for (let booking of car.bookedTimeSlots) {
-          // console.log("for(var booking of car.bookedTimeSlots)");
 
           var bookedFrom = moment(booking.from).format("MMM DD YYYY HH:mm");
           var bookedTo = moment(booking.to).format("MMM DD YYYY HH:mm");
@@ -78,7 +67,6 @@ const Home = () => {
 
           }
         }
-
         if(!flag)
         {
           temp.push(car);
@@ -95,7 +83,7 @@ const Home = () => {
 
       <Row className="mt-4" justify="center">
         <Col lg={20} sm={24} className="d-flex justify-content-left">
-          <p className="home-p">Select your time slot first: </p>
+          <p className="home-p">Choose your time slot first: </p>
           <RangePicker
             showTime={{ format: "HH:mm" }}
             format="MMM DD YYYY HH:mm"
@@ -111,7 +99,7 @@ const Home = () => {
         {totalCars.map((car) => {
           return (
             <Col lg={5} sm={24} xs={24}>
-            {from && to && (
+
               <div className="car p-2 bs1 mt-3">
                 <img src={car.image} alt="a car" className="carimg"/>
 
@@ -126,7 +114,7 @@ const Home = () => {
                       </Link>
                   </div>
                 </div>
-              </div>)}
+              </div>
             </Col>
           );
         })}
