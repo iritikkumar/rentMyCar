@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import { addCar, editCar, getAllCars } from "../redux/actions/carsActions";
 import { useParams } from 'react-router-dom';
 
-function EditCar({ match }) {
+const EditCar = ({ match }) => {
   const { cars } = useSelector((state) => state.carsReducer);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alertsReducer);

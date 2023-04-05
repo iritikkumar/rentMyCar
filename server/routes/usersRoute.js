@@ -55,13 +55,13 @@ router.post("/register", async (req,res)=>{
     });
 
 
-    console.log(newUser);
+    // console.log(newUser);
 
     try{
         const savedUser = await newUser.save();			// async finc
         res.status(201).json(savedUser);
     } catch(err){
-        console.log(req);
+        // console.log(req);
         console.log("Error ye h");
         console.log(err);
         res.status(400).json(err);
@@ -106,11 +106,11 @@ router.post("/login", async (req,res)=>{
 
 router.post("/google", async(req, res)=>{
     try{
-        console.log("email is " + req.body.email);
+        // console.log("email is " + req.body.email);
         const user = await User.findOne({email: req.body.email});
         if(user){
-            console.log(user);
-            console.log("google user already exist");
+            // console.log(user);
+            // console.log("google user already exist");
             
             const accessToken = jwt.sign(						// using jwt for more security
             {
@@ -130,8 +130,8 @@ router.post("/google", async(req, res)=>{
                 fromGoogle: true
             });
             const savedUser = await newUser.save();
-            console.log("google creating new user");
-            console.log(savedUser);
+            // console.log("google creating new user");
+            // console.log(savedUser);
 
             const accessToken = jwt.sign(						// using jwt for more security
             {

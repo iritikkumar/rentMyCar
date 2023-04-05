@@ -21,6 +21,7 @@ export const getAllUsers = () => async dispatch => {
 export const editMyProfile =(reqObj) => async dispatch =>{
     dispatch({type: 'LOADING', payload: true});
     try {
+        console.log(reqObj);
         const response = await axios.post("/api/users/editMyProfile", reqObj);
 
         dispatch({type: 'LOADING', payload: false});
