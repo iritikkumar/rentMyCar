@@ -66,11 +66,8 @@ const DefaultLayout = (props) => {
             {props.children}
         </div>
 
-        <div className='footer text-center m-2'>
-
-          <hr/>
-          <p>Designed and developed by:</p>
-          <p><b>Harit</b></p>
+        <div className='footer'>
+          <p>Designed and developed by: <b>HaRit</b></p>
         </div>
 
     </div>
