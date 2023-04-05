@@ -45,15 +45,33 @@ const BookingCar = (match) =>{
 
   function selectTimeSlots(values)
   {
-    setFrom(values[0].format("MMM DD YYYY HH:mm"));
-    setTo(values[1].format("MMM DD YYYY HH:mm"));
+    var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
+    var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
 
+    for (let booking of car.bookedTimeSlots) {
+
+      var bookedFrom = moment(booking.from).format("MMM DD YYYY HH:mm");
+      var bookedTo = moment(booking.to).format("MMM DD YYYY HH:mm");
+
+      if (
+        moment(selectedFrom).isBetween(moment(booking.from), moment(booking.to)) ||
+        moment(selectedTo).isBetween(moment(booking.from), moment(booking.to)) ||
+        moment(bookedFrom).isBetween(moment(selectedFrom), moment(selectedTo)) ||
+        moment(bookedTo).isBetween(moment(selectedFrom), moment(selectedTo))
+      ) {
+
+        alert("Car already booked in this time slot, kindly choose another one!");
+        return;
+      }
+    }
+    setFrom(selectedFrom);
+    setTo(selectedTo);
     setTotalHours(values[1].diff(values[0], 'hours'))
   }
 
-  function onToken(token){
+  function onClick(e){
+    e.preventDefault();
     const reqObj={
-      token,
       user : JSON.parse(localStorage.getItem('user'))._id,
       car : carid,
       totalHours,
@@ -64,7 +82,6 @@ const BookingCar = (match) =>{
         to,
       }
     }
-
     console.log(reqObj);
     dispatch(bookCar(reqObj));
   }
@@ -72,7 +89,6 @@ const BookingCar = (match) =>{
   return (
     <DefaultLayout>
       {loading && <Spinner/>}
-      {/* <Row justify='center' className='mt-5'> */}
       <Row justify='center' className='d-flex align-items-center p-2' style={{minHeight:'90vh'}}>
         <Col lg={10} sm={24} xs={24}>
           <img src={car.image} className='carimg2 bs1'/>
@@ -107,14 +123,15 @@ const BookingCar = (match) =>{
               }}>Driver required</Checkbox>
 
               <h3>Total Amount : {totalAmount}</h3>
-              <StripeCheckout
+              <button className="btn1" style={{fontWeight:"bold"}} onClick={onClick}>Book Now</button>
+              {/* <StripeCheckout
                 shippingAddress
                 token={onToken}
                 amount={totalAmount * 100}
                 currency="INR"
                 stripeKey="pk_test_51MQ3exSJMJym7GDQT41xwtNjAAuum2QEoaJJymREPGZncpr2tzJq6Fesf72zr8uOwg1S2Cvmi5XKCM5Xo7trODP400tuJlPdQU">
-                <button className="btn1" style={{fontWeight:"bold"}}>Book Now</button>
-               </StripeCheckout> 
+                
+               </StripeCheckout>  */}
           </div>)}
           
         </Col>

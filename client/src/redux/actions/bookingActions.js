@@ -5,6 +5,8 @@ import {message} from 'antd'
 export const bookCar = (reqObj) => async dispatch => {
     dispatch({type: 'LOADING', payload: true});
     try {
+        console.log("inside carActions");
+        console.log(reqObj);
         const response = await axios.post("/api/bookings/bookcar", reqObj);
         message.success("Your car booked successfully");
         setTimeout(() =>{

@@ -14,8 +14,6 @@ const Home = () => {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [totalCars, setTotalCars] = useState([]);
   const dispatch = useDispatch();
-  const [from, setFrom] = useState()
-  const [to , setTo] = useState();
 
   useEffect(() => {
     dispatch(getAllCars());
@@ -26,14 +24,12 @@ const Home = () => {
   }, [cars]);
 
 
-  
   // console.log(cars);
   function setFilter(values) {
 
     var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
     var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
-    setFrom(selectedFrom);
-    setTo(selectedTo);
+
     // console.log(selectedFrom + "\n" + selectedTo);
     var temp = [];
 
