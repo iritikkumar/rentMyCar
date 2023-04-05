@@ -14,6 +14,8 @@ const Home = () => {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [totalCars, setTotalCars] = useState([]);
   const dispatch = useDispatch();
+  const [from, setFrom] = useState()
+  const [to , setTo] = useState();
 
   useEffect(() => {
     dispatch(getAllCars());
@@ -34,7 +36,8 @@ const Home = () => {
 
     var selectedFrom = moment(values[0].$d).format("MMM DD YYYY HH:mm");
     var selectedTo = moment(values[1].$d).format("MMM DD YYYY HH:mm");
-
+    setFrom(selectedFrom);
+    setTo(selectedTo);
     // console.log(selectedFrom + "\n" + selectedTo);
     var temp = [];
     // console.log("total");
@@ -92,6 +95,7 @@ const Home = () => {
 
       <Row className="mt-4" justify="center">
         <Col lg={20} sm={24} className="d-flex justify-content-left">
+          <p className="home-p">Select your time slot first: </p>
           <RangePicker
             showTime={{ format: "HH:mm" }}
             format="MMM DD YYYY HH:mm"
@@ -107,6 +111,7 @@ const Home = () => {
         {totalCars.map((car) => {
           return (
             <Col lg={5} sm={24} xs={24}>
+            {from && to && (
               <div className="car p-2 bs1 mt-3">
                 <img src={car.image} alt="a car" className="carimg"/>
 
@@ -121,7 +126,7 @@ const Home = () => {
                       </Link>
                   </div>
                 </div>
-              </div>
+              </div>)}
             </Col>
           );
         })}
