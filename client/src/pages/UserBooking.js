@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
-import { getAllBookings } from '../redux/actions/bookingActions';
+import { getAllBookings,  deleteBooking } from '../redux/actions/bookingActions';
 import {Row, Col, Form} from 'antd';
+import { Link } from "react-router-dom";
+import { DeleteOutlined , EditOutlined } from '@ant-design/icons';
+import { message, Popconfirm } from 'antd';
 import moment, { relativeTimeRounding } from 'moment';
 import Spinner from '../components/Spinner';
 import Star from "../components/Star";
@@ -16,6 +19,8 @@ function UserBooking() {
     const user= JSON.parse(localStorage.getItem("user"))
     const [rate, setRate] = useState();
     const { loading } = useSelector((state) => state.alertsReducer);
+    const userid = JSON.parse(localStorage.getItem("user"))._id;
+
     useEffect(() =>{
         dispatch(getAllBookings())
     }, []);
@@ -58,6 +63,18 @@ function UserBooking() {
                             <Col lg={7} sm={24}>
                                 <img src={booking.car.image} height="125" width= "200" classname="p-4" /> 
                              </Col>
+                             <div className="mr-4">
+                                <Popconfirm
+                                    title="Delete the booking?"
+                                    description="Are you sure to delete this booking?"
+                                    onConfirm={()=>{dispatch(deleteBooking({carid : booking.car._id, userid: userid, bookedSlotFrom:booking.bookedTimeSlots.from, bookedSlotTo:booking.bookedTimeSlots.to }))}}
+                                    okText="Yes"
+                                    cancelText="No"
+                                >
+                                    <DeleteOutlined style={{color:'red', cursor:'pointer'}}/>
+                                </Popconfirm>
+                                
+                            </div>
                         </Row>
                         )
                     })}

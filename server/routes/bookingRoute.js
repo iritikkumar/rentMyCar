@@ -3,10 +3,6 @@ const router = express.Router();
 const Booking = require("../models/bookingModel");
 const Car = require("../models/carModel");
 const moment = require("moment");
-const { v4: uuidv4 } = require("uuid");
-const stripe = require("stripe")(
-  "sk_test_51MQ3exSJMJym7GDQfgFOJoKhVGCyaYMrPKVjEwFmi0UBlvw4weunExiAifJbAmsNGlQAIflKWILlOkqiVLtNG7KJ0073E1tfoN"
-);
 
 router.post("/bookcar", async (req, res) => {
   // console.log(req.body);
@@ -30,11 +26,27 @@ router.post("/bookcar", async (req, res) => {
 
 router.post("/deleteBooking", async (req, res) => {
   try {
-
-    
-
-
-    // await Booking.findOneAndDelete({ _id: req.body.carid, });
+    // console.log("booking ROute")
+    // console.log(req.body);
+    const car = await Car.findOne({_id: req.body.carid});
+    // console.log(car.bookedTimeSlots);
+    const index = -1;    
+    for(let booking of car.bookedTimeSlots){
+      let flag1 = moment(booking.from).isSame(req.body.bookedSlotFrom);
+      let flag2 = moment(booking.to).isSame(req.body.bookedSlotTo);
+      console.log(flag1)
+      console.log(flag2)
+      if(flag1===true && flag2===true){
+        index = i;
+      }
+    }
+    console.log(index);
+    // if(index>-1){
+    //   car.bookedTimeSlots.splice(index, 1);
+    // }
+    // car.save();
+    // console.log(car);
+    // await Booking.findOneAndDelete({ car: req.body.carid, user: req.body.userid, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo}});
     res.send("Booking deleted successfully");
   } catch (err) {
     return res.status(400).json(err);
