@@ -26,7 +26,7 @@ h1{
 .footer{
   background-color:cadetblue;
   text-align: center;
-  margin: 2px; 
+  margin-top: 20px; 
   display: flex;
   align-items:center;
   justify-content: center;
@@ -65,8 +65,17 @@ p{
 .content{
   min-height: 90vh;  
 }
+.car{
+  height: 390px;
+  border-radius: 15px;
+}
+.car-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
 .carimg{
-  height: 165px;
+  height: 250px;
   width: 100%;
   border-radius: 5px;
   object-fit: cover;

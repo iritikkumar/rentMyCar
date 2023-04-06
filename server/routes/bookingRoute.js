@@ -38,6 +38,7 @@ router.post("/deleteBooking", async (req, res) => {
     res.send("Booking deleted Successfully");
   } catch (err) {
     console.log(err);
+    
     res.status(400).json(err);
   }
 });

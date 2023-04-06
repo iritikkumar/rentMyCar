@@ -79,7 +79,7 @@ const Home = () => {
 
       <Row className="mt-4" justify="center">
         <Col lg={20} sm={24} className="d-flex justify-content-left">
-          <p className="home-p">Choose your time slot first: </p>
+          <p className="home-p">Filter Cars: </p>
           <RangePicker
             showTime={{ format: "HH:mm" }}
             format="MMM DD YYYY HH:mm"
@@ -94,14 +94,14 @@ const Home = () => {
       <Row justify="center mt-1" gutter={16}>
         {totalCars.map((car) => {
           return (
-            <Col lg={5} sm={24} xs={24}>
+            <Col lg={7} sm={24} xs={24}>
 
               <div className="car p-2 bs1 mt-3">
                 <img src={car.image} alt="a car" className="carimg"/>
 
-                <div className="car-content d-flex align-items-center justify-content-between">
+                <div className="car-content">
                   <div>
-                    <p>{car.name}</p>
+                    <p style={{fontSize: "20px"}}>{car.name}</p>
                     <p>{car.rentPerHour} Rent Per Hour /-</p>
                     <Star star={car.ratings} raters= {car.raters} />
                   </div>
