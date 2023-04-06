@@ -26,30 +26,19 @@ router.post("/bookcar", async (req, res) => {
 
 router.post("/deleteBooking", async (req, res) => {
   try {
-    // console.log("booking ROute")
-    // console.log(req.body);
     const car = await Car.findOne({_id: req.body.carid});
+    // console.log(car.bookedTimeSlots)
+    car.bookedTimeSlots = car.bookedTimeSlots.filter(function(el) { 
+      return !moment(el.from).isSame(req.body.bookedSlotFrom) || !moment(el.to).isSame(req.body.bookedSlotTo);
+    }); 
     // console.log(car.bookedTimeSlots);
-    const index = -1;    
-    for(let booking of car.bookedTimeSlots){
-      let flag1 = moment(booking.from).isSame(req.body.bookedSlotFrom);
-      let flag2 = moment(booking.to).isSame(req.body.bookedSlotTo);
-      console.log(flag1)
-      console.log(flag2)
-      if(flag1===true && flag2===true){
-        index = i;
-      }
-    }
-    console.log(index);
-    // if(index>-1){
-    //   car.bookedTimeSlots.splice(index, 1);
-    // }
-    // car.save();
-    // console.log(car);
-    // await Booking.findOneAndDelete({ car: req.body.carid, user: req.body.userid, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo}});
-    res.send("Booking deleted successfully");
+    car.save();
+    console.log(car.bookedTimeSlots);
+    await Booking.findOneAndDelete({ car: req.body.carid, user: req.body.userid, bookedTimeSlots:{from: req.body.bookedSlotFrom, to: req.body.bookedSlotTo}});
+    res.send("Booking deleted Successfully");
   } catch (err) {
-    return res.status(400).json(err);
+    console.log(err);
+    res.status(400).json(err);
   }
 });
 
